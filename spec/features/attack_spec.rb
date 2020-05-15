@@ -20,4 +20,14 @@ feature "Attack a player" do
     click_link 'Attack'
     expect(page).to have_content 'Mittens attacked Dave'
   end
+
+  scenario 'reduce player 1 HP by 10' do
+    sign_in_and_play
+    click_link 'Attack'
+    click_button 'OK'
+    click_link 'Attack'
+    click_button 'OK'
+    expect(page).not_to have_content 'Dave: 60HP'
+    expect(page).to have_content 'Dave: 50HP'
+  end 
 end
